@@ -7,8 +7,10 @@
  */
 package manejodearchivos;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,6 +62,7 @@ public class ManejoDeArchivos {
         }
 }
     
+    //Este método agrega contenido en el archivo, pero no lo sobreescribe
     public static void agregarArchivo(String nombre, String contenido){
         PrintWriter salida = null;
         File archivo = new File(nombre);
@@ -70,6 +73,17 @@ public class ManejoDeArchivos {
             Logger.getLogger(ManejoDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             salida.close();
+        }
+    }
+    
+    public static void leerArchivo(String nombre){
+        //Declaramos el file
+        File archivo = new File(nombre);
+        try {
+            //Creamos el descriptor de lectura del fichero
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+        } catch (FileNotFoundException ex) {
+         ex.printStackTrace(System.out);
         }
     }
 }
